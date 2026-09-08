@@ -1,12 +1,1 @@
-# Customer Churn Prediction
 
-A Machine Learning web app that predicts whether a customer is likely to **churn or stay**.
-
-**Tech Stack:** Python, Pandas, Scikit-learn, Random Forest, Streamlit.
-
-```bash
-pip install streamlit pandas scikit-learn
-streamlit run app.py
-```
-
-The app displays the **prediction, churn probability, and risk level**.
