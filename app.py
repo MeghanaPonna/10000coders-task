@@ -6,28 +6,18 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 
 
-# -----------------------------------------
-# PAGE CONFIG
-# -----------------------------------------
-
 st.set_page_config(
     page_title="Customer Churn Prediction",
     page_icon="📊"
 )
 
 
-# -----------------------------------------
-# LOAD DATASET
-# -----------------------------------------
 
 df = pd.read_csv(
     r"C:\Users\user\Downloads\archive (2)\WA_Fn-UseC_-Telco-Customer-Churn.csv"
 )
 
 
-# -----------------------------------------
-# DATA PREPROCESSING
-# -----------------------------------------
 
 if "customerID" in df.columns:
     df.drop("customerID", axis=1, inplace=True)
@@ -40,15 +30,12 @@ df["TotalCharges"] = pd.to_numeric(
 )
 
 
-# Fill missing values
+
 df["TotalCharges"] = df["TotalCharges"].fillna(
     df["TotalCharges"].median()
 )
 
 
-# -----------------------------------------
-# ENCODE CATEGORICAL COLUMNS
-# -----------------------------------------
 
 label_encoders = {}
 
@@ -61,18 +48,12 @@ for column in df.select_dtypes(include="object").columns:
     label_encoders[column] = le
 
 
-# -----------------------------------------
-# FEATURES AND TARGET
-# -----------------------------------------
 
 X = df.drop("Churn", axis=1)
 
 y = df["Churn"]
 
 
-# -----------------------------------------
-# TRAIN TEST SPLIT
-# -----------------------------------------
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
@@ -82,9 +63,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 
-# -----------------------------------------
-# TRAIN MODEL
-# -----------------------------------------
 
 model = RandomForestClassifier(
     n_estimators=100,
@@ -94,9 +72,7 @@ model = RandomForestClassifier(
 model.fit(X_train, y_train)
 
 
-# -----------------------------------------
-# TITLE
-# -----------------------------------------
+
 
 st.title("📊 Customer Churn Prediction System")
 
@@ -107,9 +83,6 @@ st.write(
 st.divider()
 
 
-# -----------------------------------------
-# CUSTOMER INPUTS
-# -----------------------------------------
 
 st.subheader("Enter Customer Details")
 
@@ -196,9 +169,6 @@ with col2:
     )
 
 
-# -----------------------------------------
-# PREDICTION
-# -----------------------------------------
 
 if st.button("🔍 Predict Churn"):
 
@@ -238,9 +208,6 @@ if st.button("🔍 Predict Churn"):
             )[0]
 
 
-    # -------------------------------------
-    # MODEL PREDICTION
-    # -------------------------------------
 
     prediction = model.predict(input_data)[0]
 
@@ -273,9 +240,6 @@ if st.button("🔍 Predict Churn"):
         )
 
 
-    # -------------------------------------
-    # RISK LEVEL
-    # -------------------------------------
 
     st.subheader("Customer Churn Risk")
 
@@ -296,10 +260,6 @@ if st.button("🔍 Predict Churn"):
 
         st.error("🔴 High Churn Risk")
 
-
-# -----------------------------------------
-# FOOTER
-# -----------------------------------------
 
 st.divider()
 
