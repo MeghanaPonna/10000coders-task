@@ -13,10 +13,11 @@ st.set_page_config(
 
 
 
-df = pd.read_csv(
-    r"C:\Users\user\Downloads\archive (2)\WA_Fn-UseC_-Telco-Customer-Churn.csv"
-)
+# df = pd.read_csv(
+#     r"C:\Users\user\Downloads\archive (2)\WA_Fn-UseC_-Telco-Customer-Churn.csv"
+# )
 
+df=pd.read_csv("WA_Fn-UseC_-Telco-Customer-Churn.csv")
 
 
 if "customerID" in df.columns:
